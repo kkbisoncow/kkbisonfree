@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teachers physics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+        }
+        
+        :root {
+            --primary: #4a6fa5;
+            --secondary: #030405;
+            --accent: #ff8c42;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --success: #28a745;
+            --text: #050404;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        body {
+            background-color: #f5f7fb;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo i {
+            color: var(--accent);
+            font-size: 2.2rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 0.5rem 0.8rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .login-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+        
+        .login-btn:hover {
+            background-color: #e67a2e;
+            transform: translateY(-2px);
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(74, 111, 165, 0.9), rgba(22, 96, 136, 0.9));
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 1.5rem 0;
+            background-color: var(--light);
+            margin-bottom: 2rem;
+        }
+        
+        .breadcrumb ul {
+            display: flex;
+            list-style: none;
+            gap: 0.5rem;
+        }
+        
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .breadcrumb .separator {
+            color: #666;
+        }
+        
+        /* Teachers Grid */
+        .teachers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .teacher-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+        
+        .teacher-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .teacher-img {
+            height: 250px;
+            background-color: var(--primary);
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .teacher-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .teacher-content {
+            padding: 1.5rem;
+        }
+        
+        .teacher-content h3 {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .teacher-subject {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .teacher-bio {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .teacher-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .teacher-btn {
+            display: block;
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .teacher-btn:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Teacher Details Modal (Kept for structure, but its function is changed) */
+        .teacher-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .teacher-modal-content {
+            background-color: white;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalFade 0.3s ease-out;
+        }
+        
+        @keyframes modalFade {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--dark);
+            cursor: pointer;
+            transition: color 0.3s;
+            z-index: 10;
+        }
+        
+        .close-modal:hover {
+            color: var(--accent);
+        }
+        
+        .teacher-modal-header {
+            padding: 2rem 2rem 0;
+        }
+        
+        .teacher-modal-body {
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+        }
+        
+        .modal-teacher-img {
+            width: 100%;
+            height: 300px;
+            border-radius: 10px;
+            background-color: var(--primary);
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .modal-teacher-info h2 {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .modal-teacher-subject {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        
+        .modal-teacher-bio {
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+        
+        .teacher-qualifications {
+            margin-bottom: 2rem;
+        }
+        
+        .teacher-qualifications h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .qualifications-list {
+            list-style: none;
+        }
+        
+        .qualifications-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .qualifications-list li:before {
+            content: "✓";
+            color: var(--success);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .teacher-modal-body {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-teacher-img {
+                height: 300px;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .teachers-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .teacher-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .teacher-modal-body {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>TEAM බයිසන් සත්කාරය</span>
+            </div>
+            
+            
+        </div>
+    </header>
+
+    
+
+    <section class="page-header">
+        <div class="container">
+            <h1>අපගේ ගුරුවරුන්</h1>
+            <p>මෙහි ඇති සියලුම වීඩියෝ වල අයිතිය මුල් අයිතිකරුවන් සතු වේ</p>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="teachers-grid" id="teachersGrid">
+            </div>
+    </section>
+
+    <div class="teacher-modal" id="teacherModal">
+        <div class="teacher-modal-content">
+            <button class="close-modal" id="closeTeacherModal">&times;</button>
+            <div class="teacher-modal-header">
+                </div>
+            <div class="teacher-modal-body">
+                </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>බයිසන් සත්කාරය</h3>
+                    <p>මෙහි ඇති සියලුම වීඩියෝ වල අයිතිය මුල් අයිතිකරුවන් සතු වේ.</p>
+                </div>
+                <div class="footer-column">
+                    
+                </div>
+                <div class="footer-column">
+                    <h3>සම්බන්ධ වන්න</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> 0742672786-Bison <br>0755548551-Site Admin</li>
+                        <li><i class="fas fa-envelope"></i> https://t.me/sudharmaramekkrilawa</li>
+                        <li><i class="fas fa-map-marker-alt"></i> youtube:-kkbisoncow</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 OSKA Commiunity. සියලුම හිමිකම් ඇවිරිණි.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Teachers Data
+        const teachersData = [
+            {
+                id: 1,
+                name: "අනුරාධ පෙරේරා",
+                subject: "PHYSICS",
+                experience: "FREE",
+                bio: "ජීවිතයට PHYSICS🏆🔥",
+                image: "file:///C:/Users/Omal/Desktop/kk/IMG-20251205-WA0005.jpg",
+                // ADD THE YOUTUBE LINK HERE
+                youtubeLink: "file:///C:/Users/Omal/Desktop/kk/video%20anu.html" 
+            },
+            {
+                id: 2,
+                name: "දර්ශන උකුවෙල",
+                subject: "PHYSICS",
+                experience: "FREE",
+                bio: "ලංකාවේ වැඩිම ප්‍රතිඵල සහිත Physics පන්තිය 🏆🔥",
+                image: "file:///C:/Users/Omal/Desktop/kk/IMG-20251205-WA0004.jpg",
+                // ADD THE YOUTUBE LINK HERE
+                youtubeLink: "file:///C:/Users/Omal/Desktop/kk/video%20uku.html"
+            },
+            {
+                id: 3,
+                name: "රෝසා සර් හා වෙනත්",
+                subject: "PHYSICS",
+                experience: "FREE",
+                bio: "කිරි කජුය.. පැණි කජුය",
+                image: "file:///C:/Users/Omal/Desktop/kk/video%20misska.html",
+                // ADD THE YOUTUBE LINK HERE
+                youtubeLink: ""
+            },
+           
+           
+           
+        ];
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTeachers();
+            // Removed setupModal() call as modal is no longer the primary function of the button
+        });
+
+        // Load teachers into the grid
+        function loadTeachers() {
+            const teachersGrid = document.getElementById('teachersGrid');
+            teachersGrid.innerHTML = '';
+            
+            teachersData.forEach(teacher => {
+                const teacherCard = document.createElement('div');
+                teacherCard.className = 'teacher-card';
+                teacherCard.setAttribute('data-teacher-id', teacher.id);
+                
+                // --- MODIFIED BUTTON ELEMENT TO USE AN <a> TAG WITH A LINK ---
+                // We are using an <a> tag here to ensure it is a link, and we'll handle the click with JavaScript.
+                teacherCard.innerHTML = `
+                    <div class="teacher-img" style="background-image: url('${teacher.image}');">
+                        <span class="teacher-badge">${teacher.experience}</span>
+                    </div>
+                    <div class="teacher-content">
+                        <h3>${teacher.name}</h3>
+                        <span class="teacher-subject">${teacher.subject}</span>
+                        <p class="teacher-bio">${teacher.bio.substring(0, 120)}...</p>
+                        
+                        
+                        
+                        <a href="${teacher.youtubeLink}" target="_blank" class="teacher-btn view-teacher-btn" data-teacher-id="${teacher.id}">
+                            <i class="fas fa-user-graduate"></i> select
+                        </a>
+                    </div>
+                `;
+                // --------------------------------------------------------------------
+                
+                teachersGrid.appendChild(teacherCard);
+            });
+            
+            /* // The previous JavaScript logic for buttons is no longer necessary since we use an <a> tag with 'href' and 'target="_blank"'.
+            // Removed:
+            document.querySelectorAll('.view-teacher-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const teacherId = parseInt(this.getAttribute('data-teacher-id'));
+                    openTeacherModal(teacherId);
+                });
+            });
+            */
+        }
+
+        /*
+        // --- REMOVED / COMMENTED OUT MODAL FUNCTIONS ---
+        // The modal functionality is no longer needed if the button opens YouTube directly.
+
+        function setupModal() {
+            const modal = document.getElementById('teacherModal');
+            const closeBtn = document.getElementById('closeTeacherModal');
+            
+            // Close modal when close button is clicked
+            closeBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Close modal when clicking outside
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+
+        // Open teacher modal with details
+        function openTeacherModal(teacherId) {
+            const teacher = teachersData.find(t => t.id === teacherId);
+            if (!teacher) return;
+            
+            // --- MODIFIED: REDIRECT TO YOUTUBE INSTEAD OF SHOWING MODAL ---
+            window.open(teacher.youtubeLink, '_blank'); // Opens the YouTube link in a new tab
+            
+            // The modal display logic below is commented out as it's not the desired behavior.
+            
+            // const modal = document.getElementById('teacherModal');
+            // const modalHeader = modal.querySelector('.teacher-modal-header');
+            // const modalBody = modal.querySelector('.teacher-modal-body');
+            
+            // // Set modal header
+            // modalHeader.innerHTML = '...';
+            
+            // // Show modal
+            // // modal.style.display = 'flex';
+            // // document.body.style.overflow = 'hidden';
+        }
+        */
+
+       
+        // Search functionality (if added later)
+        function searchTeachers() {
+            const searchInput = document.getElementById('teacherSearch');
+            const searchTerm = searchInput.value.toLowerCase();
+            
+            const filteredTeachers = teachersData.filter(teacher => 
+                teacher.name.toLowerCase().includes(searchTerm) ||
+                teacher.subject.toLowerCase().includes(searchTerm) ||
+                teacher.bio.toLowerCase().includes(searchTerm)
+            );
+            
+            // Update the grid with filtered teachers
+            updateTeachersGrid(filteredTeachers);
+        }
+
+        // Update teachers grid with filtered results
+        function updateTeachersGrid(teachers) {
+            const teachersGrid = document.getElementById('teachersGrid');
+            teachersGrid.innerHTML = '';
+
+           // ... (rest of the updateTeachersGrid logic for filtered teachers) ...
+          
+            // The event listener logic below is removed as we use <a> tag for direct linking
+            /*
+            document.querySelectorAll('.view-teacher-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const teacherId = parseInt(this.getAttribute('data-teacher-id'));
+                    openTeacherModal(teacherId);
+                });
+            });
+            */
+        }
+    </script>
+</body>
+</html>

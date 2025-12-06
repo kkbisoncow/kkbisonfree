@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimalist Educational Links</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ඔබ ලබා දුන් මුල්ම CSS හි root Variables */
+        :root {
+            --primary: #509cdb; /* Blue */
+            --secondary: #168888; /* Teal/Darker Blue */
+            --accent: #ff6842; /* Orange/Accent */
+            --light: #bed9f3;
+            --dark: #050a0f;
+            --text: #070303;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --professional-blue: #003366; /* New dark blue for text */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+        }
+
+        /* ------------------------------------------- */
+        /* Blank Page Core Styles (Blue & White Theme) */
+        /* ------------------------------------------- */
+        body {
+            background-color: #FFFFFF; /* White Background */
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh; /* පිටුව උසින් වැඩි කිරීමට */
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ------------------------------------------- */
+        /* Header Styles (Copied from your file) */
+        /* ------------------------------------------- */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo i {
+            color: var(--accent);
+            font-size: 2.2rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 0.5rem 0.8rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .login-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+        
+        .login-btn:hover {
+            background-color: #e67a2e;
+            transform: translateY(-2px);
+        }
+
+        /* ------------------------------------------- */
+        /* Professional Name and Links List Styles */
+        /* ------------------------------------------- */
+        .main-content {
+            /* header එක සහ footer එක අතර ඇති ප්‍රධාන ඉඩ */
+            flex-grow: 1; 
+        }
+
+        .link-list-container {
+            padding: 40px 0; /* ඉහළ සහ පහළ පරතරය වැඩි කිරීමට */
+        }
+
+        .link-list-container ul {
+            list-style: none; /* පෙරනිමි ලිස්ට් point ඉවත් කිරීමට */
+            padding: 0;
+            margin: 0;
+        }
+
+        .link-list-container li {
+            border-bottom: 1px solid #e0e0e0; /* රේඛාවකින් වෙන් කිරීමට */
+            padding: 15px 0;
+            transition: background-color 0.3s;
+        }
+
+        .link-list-container li:last-child {
+            border-bottom: none;
+        }
+        
+        .link-list-container li:hover {
+            background-color: #f8faff; /* Hover effect for professional touch */
+        }
+
+        .professional-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--professional-blue); /* Dark Blue */
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .professional-link a {
+            font-size: 1.1rem;
+            color: var(--primary); /* Bright Blue for the link */
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s;
+        }
+
+        .professional-link a:hover {
+            color: var(--secondary); /* Darker Blue on hover */
+            text-decoration: underline;
+        }
+
+        .professional-link i {
+            font-size: 0.9rem;
+            color: var(--secondary);
+        }
+
+        /* ------------------------------------------- */
+        /* Footer Styles (Copied from your file) */
+        /* ------------------------------------------- */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: auto; /* අන්තර්ගතය අවසන් වූ පසු footer එක පහළට තල්ලු කිරීමට */
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+            
+            .link-list-container {
+                padding: 20px 0;
+            }
+            
+            .professional-title {
+                font-size: 1.2rem;
+            }
+            
+            .professional-link a {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>TEAM බයිසන් සත්කාරය</span>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Home page</a></li>
+                    <li><a href="#">course</a></li>
+                    <li><a href="#">Teacher</a></li>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <button class="login-btn" id="openLogin">
+                <i class="fas fa-sign-in-alt"></i> Log in
+            </button>
+        </div>
+    </header>
+
+    <div class="container main-content">
+        <div class="link-list-container">
+            <ul>
+                <li>
+                    <span class="professional-title">ගොඩක් පාඩම් වල වර්ගීකරණය කරපු MCQ</span>
+                    <div class="professional-link">
+                        <a href="https://t.me/c/3412554266/4">
+                            <i class="fas fa-arrow-right"></i>
+                            click here
+                        </a>
+                    </div>
+                </li>
+                
+                
+                
+                
+                
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>බයිසන් සත්කරය</h3>
+                    <p>පුලුවන් උපරිමෙන් වැඩක් ගන්න මෙ වෙලාවෙ.යලුවොන්ටත් කියන්න මෙ ගැන</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Back To</h3>
+                    <ul>
+                        <li><a href="#">Home page</a></li>
+                        <li><a href="#">Course</a></li>
+                        <li><a href="#">Teachers</a></li>
+                        <li><a href="#">Resources</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i>0742672786-Bison <br> 0755548551-Site Admin</li>
+                        <li><i class="fas fa-envelope"></i> https://t.me/sudharmaramekkrilawa</li>
+                        <li><i class="fas fa-map-marker-alt"></i> youtube:-kkbisoncow</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 OSKA Commiunity.සියලුම හිමිකම් ඇවිරිණි.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
